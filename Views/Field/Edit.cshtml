@@ -1,0 +1,54 @@
+﻿@model SewPro.Models.Field
+
+@{
+    ViewData["Title"] = "تعديل الحقل";
+}
+
+<h1>تعديل الحقل</h1>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="ArabicName" class="control-label">اسم الحقل بالعربية</label>
+        <input asp-for="ArabicName" class="form-control" />
+        <span asp-validation-for="ArabicName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EnglishName" class="control-label">اسم الحقل بالإنجليزية</label>
+        <input asp-for="EnglishName" class="form-control" />
+        <span asp-validation-for="EnglishName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="FieldType">نوع الحقل</label>
+        <select asp-for="FieldType" class="form-control" asp-items="ViewBag.FieldTypes">
+            <option value="">اختر نوع الحقل</option>
+        </select>
+        <span asp-validation-for="FieldType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="IsRequired" class="control-label">هل الحقل إجباري؟</label>
+        <input asp-for="IsRequired" class="form-check-input" type="checkbox" />
+        <span asp-validation-for="IsRequired" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NumbersOnly" class="control-label">هل يقبل أرقام فقط؟</label>
+        <input asp-for="NumbersOnly" class="form-check-input" type="checkbox" />
+        <span asp-validation-for="NumbersOnly" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Notes" class="control-label">ملاحظات</label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+    <a href="@Url.Action("Index", "Field")" class="btn btn-secondary">إلغاء</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

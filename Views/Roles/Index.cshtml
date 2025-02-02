@@ -1,0 +1,23 @@
+﻿@model IEnumerable<IdentityRole>
+
+<h2>إدارة الأدوار</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>اسم الدور</th>
+            <th>التحكم</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.Name</td>
+                <td>
+                    <a href="@Url.Action("AssignRole", "Roles", new { userId = role.Id })" class="btn btn-primary">تخصيص دور</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

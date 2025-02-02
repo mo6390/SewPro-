@@ -1,0 +1,41 @@
+﻿@model SewPro.Models.PaymentMethod
+
+@{
+    ViewData["Title"] = "تعديل طريقة الدفع";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- Form for editing payment method -->
+<form asp-action="Edit" method="post">
+    <!-- Arabic Name Field -->
+    <div class="form-group">
+        <label asp-for="NameAr" class="control-label"></label>
+        <input asp-for="NameAr" class="form-control" />
+        <span asp-validation-for="NameAr" class="text-danger"></span>
+    </div>
+
+    <!-- English Name Field -->
+    <div class="form-group">
+        <label asp-for="NameEn" class="control-label"></label>
+        <input asp-for="NameEn" class="form-control" />
+        <span asp-validation-for="NameEn" class="text-danger"></span>
+    </div>
+
+    <!-- Notes Field -->
+    <div class="form-group">
+        <label asp-for="Notes" class="control-label"></label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">تعديل</button>
+</form>
+
+<!-- Back to List Link -->
+<a href="@Url.Action("Index")" class="btn btn-secondary mt-3">العودة إلى قائمة طرق الدفع</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

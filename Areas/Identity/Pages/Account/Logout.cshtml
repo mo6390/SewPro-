@@ -1,0 +1,159 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "تسجيل الخروج";
+    Layout = null;  // تعطيل الـ Layout لهذه الصفحة
+}
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"> <!-- خط عربي -->
+    <style>
+        /* التصميم العام للصفحة */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* خلفية متدرجة */
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* تصميم حاوية تسجيل الخروج */
+        .logout-container {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1); /* خلفية شفافة */
+            border-radius: 15px;
+            backdrop-filter: blur(10px); /* تأثير ضبابي */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* ظل */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* حدود شفافة */
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* تصميم زر تسجيل الخروج */
+        .btn-logout {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%); /* تدرج لوني */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-logout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* تصميم زر العودة للصفحة الرئيسية */
+        .btn-home {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* تدرج لوني */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* تصميم رسالة الترحيب */
+        .welcome-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        /* تصميم رسالة تسجيل الخروج الناجح */
+        .logout-message {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        /* تصميم زر تبديل الوضع الليلي */
+        .toggle-dark-mode {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* تدرج لوني */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-dark-mode:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- زر تبديل الوضع الليلي -->
+    <button class="toggle-dark-mode" onclick="toggleDarkMode()">تبديل الوضع الليلي</button>
+
+    <!-- حاوية تسجيل الخروج -->
+    <div class="logout-container">
+        <h1>@ViewData["Title"]</h1>
+        @{
+            if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <!-- رسالة الترحيب -->
+                <p class="welcome-message">مرحبًا، @User.Identity.Name!</p>
+
+                <!-- نموذج تسجيل الخروج -->
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="btn-logout">انقر هنا لتسجيل الخروج</button>
+                </form>
+            }
+            else
+            {
+                <!-- رسالة تسجيل الخروج الناجح -->
+                <p class="logout-message">لقد تم تسجيل خروجك بنجاح.</p>
+
+                <!-- زر العودة للصفحة الرئيسية -->
+                <a href="/" class="btn btn-home">العودة إلى الصفحة الرئيسية</a>
+            }
+        }
+    </div>
+
+    <!-- JavaScript لإدارة الوضع الليلي -->
+    <script>
+        // تبديل الوضع الليلي
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // تأكيد تسجيل الخروج
+        document.querySelector('form')?.addEventListener('submit', function (e) {
+            if (!confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

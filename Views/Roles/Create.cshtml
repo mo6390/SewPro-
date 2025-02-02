@@ -1,0 +1,15 @@
+﻿@model SewPro.Models.CreateRoleViewModel
+
+@{
+    ViewData["Title"] = "إنشاء دور جديد";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<form method="post">
+    <div class="form-group">
+        <label for="roleName">اسم الدور</label>
+        <input type="text" id="roleName" name="RoleName" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">إنشاء الدور</button>
+</form>

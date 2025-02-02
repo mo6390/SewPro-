@@ -1,0 +1,31 @@
+﻿@model SewPro.Models.Bill
+
+@{
+    ViewData["Title"] = "إضافة فاتورة جديدة";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="SupplierId">المورد</label>
+        <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.SupplierId"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="IssueDate">تاريخ الإصدار</label>
+        <input type="date" asp-for="IssueDate" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="DueDate">تاريخ الاستحقاق</label>
+        <input type="date" asp-for="DueDate" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Amount">المبلغ</label>
+        <input type="number" asp-for="Amount" class="form-control" step="0.01" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">حفظ الفاتورة</button>
+</form>

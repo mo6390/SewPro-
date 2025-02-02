@@ -1,0 +1,66 @@
+/* الشريط العلوي */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #101212;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+/* هامش للقائمة الجانبية بحيث تبدأ أسفل الشريط العلوي */
+#sidebar {
+    position: fixed;
+    top: 70px; /* بداية القائمة أسفل الشريط العلوي */
+    right: 0;
+    height: calc(100vh - 70px); /* قائمة جانبية تأخذ كامل الارتفاع باستثناء الشريط العلوي */
+    width: 250px;
+    overflow-y: auto;
+    background-color: #0a828a;
+    padding-top: 20px; /* تم إضافة هامش هنا لتوسيع المسافة */
+}
+
+/* إضافة المسافة بين العناصر في الشريط الجانبي */
+.sidebar-sticky {
+    padding-bottom: 20px;
+}
+
+/* جعل المحتوى يبدأ من أسفل الشريط العلوي */
+#page-content-wrapper {
+    margin-top: 70px; /* إضافة هامش لتفادي التداخل مع الشريط العلوي */
+    margin-right: 250px; /* المسافة التي تأخذها القائمة الجانبية */
+    padding-top: 20px;
+}
+
+/* ترتيب الشريط العلوي */
+.navbar-nav {
+    flex-direction: row-reverse; /* جعل عناصر الشريط العلوي تبدأ من أقصى اليمين */
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px; /* إضافة مسافة بين العناصر */
+}
+
+footer {
+    margin-top: 20px;
+}
+
+/* تصميم المستخدم في الشريط الجانبي */
+.user-info {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+}
+
+.user-info img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.user-info .user-name {
+    margin-left: 10px;
+}

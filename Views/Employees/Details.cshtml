@@ -1,0 +1,20 @@
+﻿@model SewPro.Models.Employee
+
+@{
+    ViewData["Title"] = "تفاصيل الموظف";
+}
+
+<h2>تفاصيل الموظف</h2>
+
+<table class="table table-bordered">
+    <tr><th>الاسم</th><td>@Model.Name</td></tr>
+    <tr><th>البريد الإلكتروني</th><td>@Model.Email</td></tr>
+    <tr><th>الهاتف</th><td>@Model.Phone</td></tr>
+    <tr><th>الوظيفة</th><td>@Model.JobTitle</td></tr>
+    <tr><th>الراتب</th><td>@Model.Salary.ToString("C")</td></tr>
+</table>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-warning">تعديل</a>
+    <a asp-action="Index" class="btn btn-secondary">العودة للقائمة</a>
+</p>

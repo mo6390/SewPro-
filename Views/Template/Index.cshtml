@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SewPro.ViewModels.TemplateViewModel>
+
+@{
+    ViewData["Title"] = "القوالب";
+}
+
+<h1>القوالب</h1>
+
+<!-- إضافة زر لإنشاء قالب جديد -->
+<a href="@Url.Action("Create", "Template")" class="btn btn-primary mb-3">إنشاء قالب جديد</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>الاسم بالعربية</th>
+            <th>الاسم بالإنجليزية</th>
+            <th>الوصف</th>
+            <th>نوع القالب</th>
+            <th>نوع التصميم</th>
+            <th>نشط</th>
+            <th>عرض الاسم مع القيمة</th>
+            <th>عرض حدود حول الحقل</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var template in Model)
+        {
+            <tr>
+                <td>@template.ArabicName</td>
+                <td>@template.EnglishName</td>
+                <td>@template.Description</td>
+                <td>@template.TemplateType</td>
+                <td>@template.DesignType</td>
+                <td>@(template.IsActive ? "نعم" : "لا")</td>
+                <td>@(template.ShowNameWithValue ? "نعم" : "لا")</td>
+                <td>@(template.ShowBorderAroundField ? "نعم" : "لا")</td>
+            </tr>
+        }
+    </tbody>
+</table>

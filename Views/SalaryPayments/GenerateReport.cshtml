@@ -1,0 +1,108 @@
+﻿@model IEnumerable<SewPro.Models.SalaryPayment> 
+
+@{
+    ViewData["Title"] = "تقرير دفع الرواتب";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- مربع البحث -->
+<form method="get" class="form-inline mb-3">
+    <div class="form-group">
+        <label for="search" class="mr-2">البحث بالاسم:</label>
+        <input type="text" id="search" name="search" class="form-control" placeholder="ابحث عن الموظف" value="@ViewData["Search"]" />
+    </div>
+    <button type="submit" class="btn btn-primary ml-2">بحث</button>
+</form>
+
+<!-- الزر للطباعة -->
+<button id="printButton" class="btn btn-success mb-3">طباعة التقرير</button>
+<!-- الزر لتصدير PDF -->
+<form method="get" asp-action="ExportToPdf">
+    <input type="hidden" name="startDate" value="@ViewData["StartDate"]" />
+    <input type="hidden" name="endDate" value="@ViewData["EndDate"]" />
+    <input type="hidden" name="search" value="@ViewData["Search"]" />
+    <button type="submit" class="btn btn-warning">تصدير إلى PDF</button>
+</form>
+
+<!-- عرض البيانات في جدول -->
+<table class="table" id="reportTable">
+    <thead>
+        <tr>
+            <th>الموظف</th>
+            <th>تاريخ الدفع</th>
+            <th>الراتب الإجمالي</th>
+            <th>الخصومات</th>
+            <th>الراتب الصافي</th>
+            <th>المكافأة</th>
+            <th>إجمالي الدفع</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Employee.Name</td>
+                <td>@item.PaymentDate.ToString("dd/MM/yyyy")</td>
+                <td>@item.GrossSalary</td>
+                <td>@item.Deductions</td> <!-- عرض الخصومات -->
+                <td>@item.NetSalary</td>
+                <td>@item.Bonus</td>
+                <td>@item.TotalPayment</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
+
+    <script>
+        // تحويل البيانات من C# إلى JavaScript
+        var salaryPayments = @Html.Raw(Json.Serialize(Model));
+
+        // زر الطباعة
+        document.getElementById("printButton").onclick = function() {
+            printJS({
+                printable: 'reportTable',  // id الخاص بالجدول
+                type: 'html',
+                targetStyles: ['*']
+            });
+        };
+
+        // زر تصدير PDF
+        document.getElementById("pdfButton").onclick = function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // إعداد العنوان
+            doc.setFont("helvetica", "bold");
+            doc.text('تقرير دفع الرواتب', 90, 10);
+
+            // إنشاء جدول البيانات
+            const headers = [["الموظف", "تاريخ الدفع", "الراتب الإجمالي", "الخصومات", "الراتب الصافي", "المكافأة", "إجمالي الدفع"]];
+            const data = salaryPayments.map(item => [
+                item.Employee.Name,
+                new Date(item.PaymentDate).toLocaleDateString('ar-EG'),
+                item.GrossSalary,
+                item.Deductions,
+                item.NetSalary,
+                item.Bonus,
+                item.TotalPayment
+            ]);
+
+            doc.autoTable({
+                head: headers,
+                body: data,
+                startY: 20,
+                styles: { font: "arabic", halign: "center" },
+                theme: "striped"
+            });
+
+            // حفظ الملف
+            doc.save('SalaryReport.pdf');
+        };
+    </script>
+}
+

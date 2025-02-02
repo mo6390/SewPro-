@@ -1,0 +1,169 @@
+/* الشريط العلوي */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #101212;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+/* هامش للقائمة الجانبية بحيث تبدأ أسفل الشريط العلوي */
+#sidebar {
+    position: fixed;
+    top: 70px; /* بداية القائمة أسفل الشريط العلوي */
+    right: 0;
+    height: calc(100vh - 70px); /* قائمة جانبية تأخذ كامل الارتفاع باستثناء الشريط العلوي */
+    width: 250px;
+    overflow-y: auto;
+    background-color: #004d40; /* اللون الجديد للقائمة الجانبية */
+    padding-top: 20px; /* تم إضافة هامش هنا لتوسيع المسافة */
+}
+
+/* إضافة المسافة بين العناصر في الشريط الجانبي */
+.sidebar-sticky {
+    padding-bottom: 20px;
+}
+
+/* جعل المحتوى يبدأ من أسفل الشريط العلوي */
+#page-content-wrapper {
+    margin-top: 70px; /* إضافة هامش لتفادي التداخل مع الشريط العلوي */
+    margin-right: 250px; /* المسافة التي تأخذها القائمة الجانبية */
+    padding-top: 20px;
+}
+
+/* ترتيب الشريط العلوي */
+.navbar-nav {
+    flex-direction: row-reverse; /* جعل عناصر الشريط العلوي تبدأ من أقصى اليمين */
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px; /* إضافة مسافة بين العناصر */
+}
+
+footer {
+    margin-top: 20px;
+}
+
+/* تصميم المستخدم في الشريط الجانبي */
+.user-info {
+    padding: 15px;
+    border-bottom: 1px solid #004d40; /* تحديث الحد بلون جديد */
+    display: flex;
+    align-items: center;
+}
+
+.user-info img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.user-info .user-name {
+    margin-left: 10px;
+}
+
+/* تغيير لون خلفية الشريط الجانبي */
+#sidebar {
+    background-color: #004d40; /* اللون الجديد للقائمة الجانبية */
+}
+
+/* تغيير لون الخلفية للقائمة المنسدلة لتكون أفتح قليلاً */
+.sidebar .nav-item .nav-link.collapsed:focus, .sidebar .nav-item .nav-link:focus {
+    background-color: #00796b; /* اللون الفاتح للقائمة المنسدلة */
+}
+
+.sidebar .nav-item .nav-link:hover {
+    background-color: #00796b; /* اللون الفاتح عند التمرير */
+}
+
+.sidebar .nav-item .nav-link.active {
+    background-color: #004d40; /* لون أفتح عند تفعيل الرابط */
+}
+
+/* تحسين لون الخلفية للقائمة المنسدلة */
+.navbar-nav .dropdown-menu {
+    background-color: #004d40; /* نفس لون الشريط الجانبي */
+    border-color: #00796b; /* وضع الحدود بلون أفتح */
+}
+
+/* إضافة بعض التحسينات عند التمرير داخل الشريط الجانبي */
+.nav-item:hover {
+    background-color: #00796b; /* أفتح قليلاً عند التمرير على العنصر */
+}
+
+/* قواعد الاستجابة للأجهزة (Responsive) */
+
+/* للأجهزة التي تقل شاشتها عن 768px (الأجهزة المحمولة) */
+@media (max-width: 768px) {
+    /* الشريط الجانبي يصبح في الأسفل */
+    #sidebar {
+        position: static;
+        height: auto;
+        width: 100%;
+        top: 0;
+        margin-top: 10px;
+    }
+
+    /* يجعل المحتوى يستخدم العرض الكامل */
+    #page-content-wrapper {
+        margin-right: 0;
+        margin-top: 80px;
+    }
+
+    /* جعل عناصر الشريط العلوي تتكدس بشكل عمودي */
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .navbar-nav .nav-item {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* للأجهزة التي تقل شاشتها عن 480px (الأجهزة الصغيرة جدًا) */
+@media (max-width: 480px) {
+    /* تقليص حجم الصور للمستخدم */
+    .user-info img {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* تقليص حجم النصوص في الشريط الجانبي */
+    .user-info .user-name {
+        font-size: 14px;
+    }
+}
+
+/* تنسيق الفوتر لثبته في الأسفل */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* لون الخلفية الفاتح */
+    padding: 10px 0; /* تحديد المسافة حول الفوتر */
+    text-align: center; /* محاذاة النص في المنتصف */
+    z-index: 1000; /* تأكيد أنه في المقدمة */
+    border-top: 1px solid #dee2e6; /* إضافة حدود علويّة */
+}
+
+body {
+    padding-bottom: 50px; /* إضافة مسافة في أسفل الصفحة لمنع تداخل الفوتر مع المحتوى */
+}
+
+/* تحسين العرض على الأجهزة المحمولة */
+@media (max-width: 768px) {
+    #sidebar {
+        display: none;
+    }
+    #page-content-wrapper {
+        margin-left: 0;
+    }
+    .navbar-toggler {
+        display: block;
+    }
+}

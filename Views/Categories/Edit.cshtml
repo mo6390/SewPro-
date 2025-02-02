@@ -1,0 +1,13 @@
+@model SewPro.Models.Category
+
+<h2>تعديل التصنيف</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label for="Name">اسم التصنيف</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+</form>
+
+<a href="@Url.Action("Index")">عودة إلى التصنيفات</a>

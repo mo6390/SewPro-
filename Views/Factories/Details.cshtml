@@ -1,0 +1,12 @@
+﻿@model SewPro.Models.Factory
+
+<h2>تفاصيل المصنع</h2>
+
+<table class="table">
+    <tr><th>الاسم العربي:</th><td>@Model.ArabicName</td></tr>
+    <tr><th>الاسم الإنجليزي:</th><td>@Model.EnglishName</td></tr>
+    <tr><th>ملاحظات:</th><td>@(string.IsNullOrEmpty(Model.Notes) ? "لا توجد ملاحظات" : Model.Notes)</td></tr>
+</table>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">✏️ تعديل</a>
+<a asp-action="Index" class="btn btn-secondary">🔙 رجوع</a>

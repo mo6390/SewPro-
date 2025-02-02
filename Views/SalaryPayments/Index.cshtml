@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "قائمة المدفوعات";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- زر إنشاء دفعة جديدة -->
+<a href="@Url.Action("Create", "SalaryPayments")" class="btn btn-success mb-3">إنشاء دفعة جديدة</a>
+
+<!-- نموذج توليد التقرير -->
+<form method="get" asp-action="GenerateReport">
+    <div class="form-group">
+        <label>تاريخ البداية</label>
+        <input type="date" name="startDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>تاريخ النهاية</label>
+        <input type="date" name="endDate" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">توليد التقرير</button>
+</form>
+
+<!-- عرض إجمالي الرواتب المدفوعة -->
+@if (ViewData["TotalSalary"] != null)
+{
+    <h3>إجمالي الرواتب المدفوعة: @ViewData["TotalSalary"]</h3>
+}
+
+<!-- عرض قائمة المدفوعات -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>رقم الدفعة</th>
+            <th>تاريخ الدفع</th>
+            <th>الراتب الإجمالي</th>
+            <th>الخصومات</th>
+            <th>المكافآت</th>
+            <th>الراتب الصافي</th>
+            <th>حالة الدفع</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.PaymentId</td>
+                <td>@item.PaymentDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.GrossSalary</td>
+                <td>@item.Deductions</td>
+                <td>@item.Bonus</td>
+                <td>@item.NetSalary</td>
+                <td>@item.PaymentStatus</td>
+                <td>
+                    <a href="@Url.Action("Details", "SalaryPayments", new { id = item.PaymentId })" class="btn btn-info btn-sm">تفاصيل</a>
+                    <a href="@Url.Action("Edit", "SalaryPayments", new { id = item.PaymentId })" class="btn btn-warning btn-sm">تعديل</a>
+                    <a href="@Url.Action("Delete", "SalaryPayments", new { id = item.PaymentId })" class="btn btn-danger btn-sm">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

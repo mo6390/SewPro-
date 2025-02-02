@@ -1,0 +1,106 @@
+﻿@model IEnumerable<SewPro.Models.Employee>
+
+@{
+    ViewData["Title"] = "قائمة الموظفين";
+}
+
+<h2 class="mb-3">قائمة الموظفين</h2>
+
+<div class="search-container">
+    <form method="get" class="search-form">
+        <input type="text" name="search" class="search-input" placeholder="بحث عن موظف...">
+        <button type="submit" class="btn btn-secondary">بحث</button>
+    </form>
+    <div class="btn-group">
+        <a asp-action="Create" class="btn btn-primary">إضافة موظف جديد</a>
+        <a asp-action="ExportToExcel" class="btn btn-success">تصدير إلى Excel</a>
+        <a asp-action="ExportToPDF" class="btn btn-danger">تصدير إلى PDF</a>
+    </div>
+</div>
+
+<table class="table table-striped custom-table mt-3">
+    <thead>
+        <tr>
+            <th>الاسم</th>
+            <th>البريد الإلكتروني</th>
+            <th>الهاتف</th>
+            <th>الوظيفة</th>
+            <th>الراتب</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.Name</td>
+                <td>@employee.Email</td>
+                <td>@employee.Phone</td>
+                <td>@employee.JobTitle</td>
+                <td>@employee.Salary.ToString("C")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@employee.EmployeeId" class="btn btn-info btn-sm">عرض</a>
+                    <a asp-action="Edit" asp-route-id="@employee.EmployeeId" class="btn btn-warning btn-sm">تعديل</a>
+                    <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-danger btn-sm">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    /* تحسين البحث والأزرار */
+    .search-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .search-form {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .search-input {
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        width: 250px;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 8px;
+    }
+
+    /* تحسين الجدول */
+    .custom-table {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .custom-table th {
+        background-color: #7e98ab;
+        color: white;
+        text-align: center;
+    }
+
+    .custom-table td, .custom-table th {
+        padding: 12px;
+        text-align: center;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* تحسين أزرار الإجراءات */
+    .btn-sm {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+</style>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SewPro.Models.PaymentMethod>
+
+@{
+    ViewData["Title"] = "طرق الدفع";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">إضافة طريقة دفع جديدة</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>الاسم بالعربية</th>
+            <th>الاسم بالإنجليزية</th>
+            <th>الملاحظات</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var paymentMethod in Model)
+        {
+            <tr>
+                <td>@paymentMethod.NameAr</td>
+                <td>@paymentMethod.NameEn</td>
+                <td>@paymentMethod.Notes</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = paymentMethod.Id })" class="btn btn-warning">تعديل</a>
+                    <a href="@Url.Action("Delete", new { id = paymentMethod.Id })" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

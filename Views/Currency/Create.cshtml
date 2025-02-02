@@ -1,0 +1,51 @@
+﻿@model SewPro.Models.CurrencyViewModel
+
+@{
+    ViewData["Title"] = "إضافة العملة";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="MainCurrencyArabic">العملة الرئيسية عربي *</label>
+        <input type="text" class="form-control" id="MainCurrencyArabic" name="MainCurrencyArabic" required />
+    </div>
+
+    <div class="form-group">
+        <label for="MainCurrencyEnglish">العملة الرئيسية إنجليزي *</label>
+        <input type="text" class="form-control" id="MainCurrencyEnglish" name="MainCurrencyEnglish" required />
+    </div>
+
+    <div class="form-group">
+        <label for="SubCurrencyArabic">العملة الفرعية عربي *</label>
+        <input type="text" class="form-control" id="SubCurrencyArabic" name="SubCurrencyArabic" required />
+    </div>
+
+    <div class="form-group">
+        <label for="SubCurrencyEnglish">العملة الفرعية إنجليزي *</label>
+        <input type="text" class="form-control" id="SubCurrencyEnglish" name="SubCurrencyEnglish" required />
+    </div>
+
+    <div class="form-group">
+        <label for="SubCurrencyDecimal">الكسور العشرية للعملة الفرعية *</label>
+        <input type="number" class="form-control" id="SubCurrencyDecimal" name="SubCurrencyDecimal" required />
+    </div>
+
+    <div class="form-group">
+        <label for="NationalityArabic">الجنسية عربي *</label>
+        <input type="text" class="form-control" id="NationalityArabic" name="NationalityArabic" required />
+    </div>
+
+    <div class="form-group">
+        <label for="NationalityEnglish">الجنسية إنجليزي *</label>
+        <input type="text" class="form-control" id="NationalityEnglish" name="NationalityEnglish" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Notes">ملاحظات</label>
+        <textarea class="form-control" id="Notes" name="Notes"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">حفظ</button>
+</form>

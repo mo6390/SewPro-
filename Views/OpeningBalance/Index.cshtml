@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SewPro.Models.OpeningBalance>
+
+@{
+    ViewData["Title"] = "قائمة الأرصدة الافتتاحية";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>التاريخ</th>
+            <th>الرصيد النقدي</th>
+            <th>رصيد البنك</th>
+            <th>المستحقات من العملاء</th>
+            <th>المستحقات للموردين</th>
+            <th>العملية</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                <td>@item.CashBalance</td>
+                <td>@item.BankBalance</td>
+                <td>@item.CustomerReceivables</td>
+                <td>@item.SupplierPayables</td>
+                <td>
+                    <a href="@Url.Action("Details", "OpeningBalance", new { id = item.Id })" class="btn btn-info">عرض</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,26 @@
+﻿@model SewPro.Models.Unit
+
+@{
+    ViewData["Title"] = "تعديل الوحدة";
+}
+
+<h2>تعديل الوحدة</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="ArabicName" class="control-label"></label>
+        <input asp-for="ArabicName" class="form-control" />
+        <span asp-validation-for="ArabicName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EnglishName" class="control-label"></label>
+        <input asp-for="EnglishName" class="form-control" />
+        <span asp-validation-for="EnglishName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Notes" class="control-label"></label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+</form>

@@ -1,0 +1,15 @@
+﻿@model SewPro.Models.PocketShape
+
+@{
+    ViewData["Title"] = "إضافة شكل جيب جديد";
+}
+
+<h1>إضافة شكل جيب جديد</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="Name">الاسم</label>
+        <input type="text" id="Name" name="Name" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">إضافة</button>
+</form>

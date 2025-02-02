@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SewPro.Models.StatusViewModel>
+
+@{
+    ViewData["Title"] = "حالات الثوب";
+}
+
+<h2>حالات الثوب</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Status")" class="btn btn-primary">إضافة حالة جديدة</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>الاسم العربي</th>
+            <th>الاسم الإنجليزي</th>
+            <th>حالة الثوب</th>
+            <th>رسالة SMS</th>
+            <th>ملاحظات</th>
+            <th>اسم العميل</th>
+            <th>الفرع</th>
+            <th>رقم الإذن</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ArabicName</td>
+                <td>@item.EnglishName</td>
+                <td>@item.StatusType</td> <!-- الآن يتم عرض حالة الثوب بشكل صحيح -->
+                <td>@item.SmsMessage</td>
+                <td>@item.Notes</td>
+                <td>@item.CustomerName</td>
+                <td>@item.BranchName</td>
+                <td>@item.TransCode</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Status", new { id = item.Id })" class="btn btn-warning">تعديل</a>
+                    <a href="@Url.Action("Delete", "Status", new { id = item.Id })" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

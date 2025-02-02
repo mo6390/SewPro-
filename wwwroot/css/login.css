@@ -1,0 +1,158 @@
+/* تنسيق عام للصفحة */
+body {
+    font-family: 'Tajawal', sans-serif; /* خط عربي أنيق */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* خلفية متدرجة */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* تنسيق الصفحة الرئيسية */
+.login-page {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* خلفية شفافة */
+    border-radius: 15px;
+    backdrop-filter: blur(10px); /* تأثير ضبابي */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* ظل */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* حدود شفافة */
+}
+
+/* تنسيق العنوان */
+.login-page h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* تنسيق النموذج */
+.login-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* تنسيق الحقول */
+.form-floating {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.form-floating input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-floating input:focus {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+
+.form-floating label {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form-floating input:focus + label,
+.form-floating input:not(:placeholder-shown) + label {
+    top: 0;
+    right: 10px;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+/* تنسيق زر تسجيل الدخول */
+button#login-submit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button#login-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* تنسيق أزرار وسائل التواصل الاجتماعي */
+.social-login .btn {
+    width: 48%;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.social-login .btn-outline-danger {
+    border-color: #db4437;
+    color: #db4437;
+}
+
+.social-login .btn-outline-danger:hover {
+    background: #db4437;
+    color: #fff;
+}
+
+.social-login .btn-outline-primary {
+    border-color: #1877f2;
+    color: #1877f2;
+}
+
+.social-login .btn-outline-primary:hover {
+    background: #1877f2;
+    color: #fff;
+}
+
+/* تنسيق الروابط */
+.login-page a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.login-page a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* تنسيق النصوص الصغيرة */
+.login-page p {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+/* تنسيق متجاوب */
+@media (max-width: 576px) {
+    .login-page {
+        padding: 15px;
+    }
+
+    .social-login .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

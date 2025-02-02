@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SewPro.Models.Item>
+
+@{
+    ViewData["Title"] = "الأصناف";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">إضافة صنف جديد</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>الأسم العربي</th>
+            <th>الأسم الإنجليزي</th>
+            <th>مجموعة الصنف</th>
+            <th>سعر البيع</th>
+            <th>الباركود</th>
+            <th>خيارات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ArabicName</td>
+                <td>@item.EnglishName</td>
+                <td>@item.ItemGroup.ArabicName</td>
+                <td>@item.Price.ToString("F2")</td>
+                <td>@item.Barcode</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">تفاصيل</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">تعديل</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

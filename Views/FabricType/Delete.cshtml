@@ -1,0 +1,10 @@
+﻿@model SewPro.Models.FabricType
+
+<h2>هل أنت متأكد من حذف هذا النوع؟</h2>
+<p>⚠️ سيتم حذف "<strong>@Model.ArabicName</strong>" بشكل نهائي!</p>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">🗑 حذف</button>
+    <a asp-action="Index" class="btn btn-secondary">🔙 إلغاء</a>
+</form>
